@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발자 면접 대비: Spring 핵심 질문 (Part 2)</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #3b82f6; /* Blue */
+            --accent: #ef4444; /* Red */
+            --success: #10b981; /* Emerald */
+            --warning: #f59e0b; /* Amber */
+            --spring-color: #6db33f; /* Spring Green */
+            --mybatis-color: #b91c1c; /* MyBatis Red/Blackish */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-color);
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* 👑 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--spring-color);
+        }
+
+        .header-badge {
+            background: var(--spring-color);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header h1 { margin: 0 0 15px 0; font-size: 2.3rem; color: #f8fafc; }
+        .header p { font-size: 1.15rem; color: #cbd5e1; margin: 0; font-weight: 300; }
+
+        /* 섹션 공통 스타일 (질문 카드) */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+        
+        .q-mark { color: var(--spring-color); font-weight: bold; font-size: 1.6rem; margin-right: 8px; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
+
+        /* 의도 및 답변 박스 */
+        .info-box { background: #eff6ff; border-left: 5px solid var(--secondary); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .info-box h4 { margin: 0 0 8px 0; color: var(--secondary); display: flex; align-items: center; font-size: 1.05rem; }
+        .info-box p { margin: 0; font-size: 0.95rem; color: #475569; }
+
+        .success-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .success-box h4 { margin: 0 0 12px 0; color: var(--success); display: flex; align-items: center; font-size: 1.05rem; }
+        
+        .answer-content { font-size: 1rem; color: #334155; }
+        .answer-content ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
+        .answer-content li { margin-bottom: 8px; }
+
+        /* 태그(Badge) */
+        .badge-group { margin-top: 25px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { display: inline-block; background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
+        .badge-spring { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .badge-mybatis { background: #fee2e2; color: var(--mybatis-color); border: 1px solid #fecaca; }
+
+        /* 텍스트 강조 */
+        .highlight { background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fef08a 40%); font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span class="header-badge">INTERVIEW PREP - SPRING PART 2</span>
+        <h1>🌱 Spring 면접 시크릿 노트: DB & MyBatis</h1>
+        <p>프로젝트에서 다룬 MyBatis의 동작 원리를 증명하고, JPA와의 차이점을 아는 '생각하는 개발자'임을 어필하세요.</p>
+    </div>
+
+    <!-- Q1: MyBatis vs JPA -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>프로젝트에서 MyBatis를 사용하셨는데, 최근 많이 쓰이는 JPA(ORM)와의 차이점이 무엇인지 알고 계신가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>JPA를 안 써봤더라도 두 기술의 패러다임 차이(SQL 중심 vs 객체 중심)를 인지하고 있는지 묻는 1순위 단골 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                가장 큰 차이는 <strong>'개발자가 직접 SQL을 짜느냐, 프레임워크가 짜주느냐'</strong>의 차이입니다.
+                <ul>
+                    <li><strong>MyBatis (SQL Mapper):</strong> 개발자가 직접 복잡한 SQL 쿼리를 작성하여 XML이나 어노테이션에 자바 객체와 매핑하는 방식입니다. 직접 통제권이 있어서 <strong>복잡한 통계 쿼리나 세밀한 DB 튜닝을 할 때 매우 유리</strong>합니다. (그래서 프로젝트의 성격에 맞게 선택했다고 어필하면 좋습니다.)</li>
+                    <li><strong>JPA (ORM 기술):</strong> 자바 객체(Entity)와 DB 테이블을 직접 매핑합니다. 기본적인 CRUD SQL을 프레임워크가 자동으로 생성해주어 <strong>생산성이 높고 완벽한 객체지향적 코드 작성</strong>이 가능합니다. 단, 러닝 커브가 높고 복잡한 쿼리를 짤 때는 별도의 기술(QueryDSL 등)이 필요합니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge badge-mybatis">#MyBatis</span>
+            <span class="badge">#JPA</span>
+            <span class="badge">#SQL_Mapper</span>
+            <span class="badge">#ORM</span>
+        </div>
+    </div>
+
+    <!-- Q2: #{} 와 ${} 의 차이 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>MyBatis의 XML 매퍼에서 파라미터를 넘길 때 <code>#{}</code>와 <code>${}</code>의 차이는 무엇이고, 보안상 어떤 이슈와 연관이 있나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>보안에 취약한 주니어 개발자를 걸러내기 위한 가장 치명적인 질문입니다. SQL 인젝션(SQL Injection) 공격의 원리와 PreparedStatement의 개념을 묻습니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. <code>#{}</code> (PreparedStatement 바인딩):</strong><br>
+                파라미터가 <code>?</code>로 치환된 후, 입력값이 안전하게 바인딩되어 문자열인 경우 자동으로 양쪽에 따옴표(' ')가 붙습니다. <span class="highlight">입력값이 순수한 데이터로만 취급되므로 SQL Injection 공격을 원천 차단</span>합니다. 무조건 이 방식을 써야 합니다.<br><br>
+                
+                <strong>2. <code>${}</code> (문자열 치환):</strong><br>
+                입력한 값이 쿼리 문장에 <strong>문자열 그대로(Statement) 삽입</strong>됩니다. 사용자가 <code>' OR 1=1 --</code> 같은 악의적인 코드를 넣으면 그대로 쿼리의 일부로 동작하여 DB가 털리게 됩니다. 테이블명이나 컬럼명 자체를 동적으로 바꿔야 하는 아주 제한적인 상황에서만 조심해서 사용해야 합니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge badge-mybatis">#MyBatis_파라미터</span>
+            <span class="badge">#SQL_Injection방어</span>
+            <span class="badge">#PreparedStatement</span>
+        </div>
+    </div>
+
+    <!-- Q3: @Transactional 롤백 정책 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>스프링에서 <code>@Transactional</code>로 트랜잭션을 관리할 때, 어떤 상황에서 자동으로 롤백(Rollback)이 발생하나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>이전 Java 면접의 '예외처리' 질문과 연결되는 내용입니다. 스프링 AOP 기반 트랜잭션의 기본 동작 방식과 예외(Exception) 계층 구조를 묶어서 이해하고 있는지 평가합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                스프링의 <code>@Transactional</code>은 AOP 프록시를 통해 동작하며, 메서드 실행 도중 예외가 발생하면 롤백 여부를 결정합니다.<br><br>
+                기본 설정상 <span class="highlight">런타임 예외(Unchecked Exception, 예: NullPointerException, RuntimeException)가 발생했을 때만 자동으로 롤백</span>됩니다.<br><br>
+                반면, 파일 입출력 등 컴파일러가 강제하는 <strong>Checked Exception(예: IOException, SQLException)이 발생하면 기본적으로 롤백되지 않고 커밋을 시도</strong>합니다. 따라서 모든 예외에서 롤백시키려면 <code>@Transactional(rollbackFor = Exception.class)</code> 속성을 명시해주어야 안전합니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge badge-spring">#@Transactional</span>
+            <span class="badge">#Rollback정책</span>
+            <span class="badge">#RuntimeException</span>
+        </div>
+    </div>
+
+    <!-- Q4: 커넥션 풀 (Connection Pool) -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>Spring Boot는 데이터베이스와 통신할 때 내부적으로 HikariCP라는 '커넥션 풀(Connection Pool)'을 사용합니다. 이를 사용하는 이유는 무엇일까요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>DB와 서버 간의 물리적 통신 비용을 알고 있는지, 대규모 트래픽을 처리하는 백엔드 서버의 성능 최적화 기본기를 묻는 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                애플리케이션이 DB와 통신하기 위해 매번 네트워크 연결(3-Way Handshake)을 맺고 인증을 거치는 과정은 <strong>CPU와 메모리, 시간을 엄청나게 잡아먹는 무거운 작업</strong>입니다. 요청이 들어올 때마다 커넥션을 생성하면 서버가 버티지 못합니다.<br><br>
+                그래서 애플리케이션 시작 시점에 <span class="highlight">미리 일정 개수의 커넥션을 만들어 풀(Pool)이라는 공간에 보관</span>해 둡니다. 클라이언트의 요청이 오면 만들어둔 커넥션을 빌려주고, 쿼리 실행이 끝나면 다시 풀에 반납받아 재사용함으로써 <strong>응답 속도를 획기적으로 높이고 DB의 과부하를 막는 것</strong>입니다. (스프링 부트는 가장 성능이 좋은 HikariCP를 기본으로 채택하고 있습니다.)
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge badge-spring">#HikariCP</span>
+            <span class="badge">#ConnectionPool</span>
+            <span class="badge">#성능최적화</span>
+        </div>
+    </div>
+
+    <!-- Q5: DTO, DAO, Entity -->
+    <div class="section-card" style="margin-bottom: 0;">
+        <h2><span class="q-mark">Q.</span>(기출) 백엔드 개발 시 DAO, DTO, Entity(Model)를 나누어 사용하는 이유는 무엇인가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>계층형 아키텍처(Controller - Service - Repository)에서의 역할 분리와 데이터 전송 객체의 필요성을 명확히 아는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                각 객체는 계층 간 역할 분리를 위해 명확한 목적을 가지고 나눠서 씁니다.
+                <ul>
+                    <li><strong>Entity (Model):</strong> 실제 DB 테이블 구조와 1:1로 매핑되는 핵심 객체입니다. DB와 맞닿아 있으므로 화면 요구사항이 바뀐다고 해서 이 객체를 함부로 수정해선 안 됩니다.</li>
+                    <li><strong>DTO (Data Transfer Object):</strong> Controller와 클라이언트(화면) 간에 데이터를 주고받기 위한 '택배 상자'입니다. <span class="highlight">비즈니스 로직 없이 getter/setter만 가지며, 화면에서 요구하는 폼 데이터 구조에 맞춰 자유롭게 변형하여 사용</span>합니다.</li>
+                    <li><strong>DAO (Data Access Object / Mapper):</strong> DB에 직접 접근하여 SQL을 실행하고 데이터를 가져오거나 조작하는 역할을 하는 통로입니다. (MyBatis의 <code>@Mapper</code> 인터페이스가 이 역할을 수행합니다.)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#DTO_DAO_Entity</span>
+            <span class="badge">#계층형아키텍처</span>
+            <span class="badge">#관심사분리</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

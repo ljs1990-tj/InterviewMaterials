@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발자 면접 대비: Spring 핵심 질문 (Part 3)</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #3b82f6; /* Blue */
+            --accent: #ef4444; /* Red */
+            --success: #10b981; /* Emerald */
+            --warning: #f59e0b; /* Amber */
+            --spring-color: #6db33f; /* Spring Green */
+            --security-color: #3b82f6; /* Shield Blue */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-color);
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* 👑 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #0f172a, #1e3a8a);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--security-color);
+        }
+
+        .header-badge {
+            background: var(--security-color);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header h1 { margin: 0 0 15px 0; font-size: 2.3rem; color: #f8fafc; }
+        .header p { font-size: 1.15rem; color: #bfdbfe; margin: 0; font-weight: 300; }
+
+        /* 섹션 공통 스타일 (질문 카드) */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+        
+        .q-mark { color: var(--security-color); font-weight: bold; font-size: 1.6rem; margin-right: 8px; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
+
+        /* 의도 및 답변 박스 */
+        .info-box { background: #eff6ff; border-left: 5px solid var(--secondary); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .info-box h4 { margin: 0 0 8px 0; color: var(--secondary); display: flex; align-items: center; font-size: 1.05rem; }
+        .info-box p { margin: 0; font-size: 0.95rem; color: #475569; }
+
+        .success-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .success-box h4 { margin: 0 0 12px 0; color: var(--success); display: flex; align-items: center; font-size: 1.05rem; }
+        
+        .answer-content { font-size: 1rem; color: #334155; }
+        .answer-content ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
+        .answer-content li { margin-bottom: 8px; }
+
+        /* 태그(Badge) */
+        .badge-group { margin-top: 25px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { display: inline-block; background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
+        .badge-security { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+
+        /* 텍스트 강조 */
+        .highlight { background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fef08a 40%); font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span class="header-badge">INTERVIEW PREP - SPRING PART 3</span>
+        <h1>🛡️ Spring 면접 시크릿 노트: Security & REST API</h1>
+        <p>인증/인가 원리와 RESTful API 통신 규약을 이해하고, 배포 경험을 논리적으로 어필하세요.</p>
+    </div>
+
+    <!-- Q1: Spring Security & JWT -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) 프로젝트에서 Spring Security와 JWT를 활용해 사용자 보안 관리를 하셨는데, 구체적인 동작 방식과 JWT를 선택한 이유를 설명해 주세요.</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>단순히 남의 코드를 복붙한 것인지, 아니면 세션(Session) 기반 인증의 한계를 인지하고 토큰(Token) 기반 인증의 Stateless(무상태성) 이점을 확실히 알고 설계했는지 검증합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. JWT를 선택한 이유:</strong><br>
+                기존 세션 방식은 사용자가 늘어날수록 서버 메모리 부하가 심해지고 서버 확장에 불리합니다. 반면 JWT는 <span class="highlight">사용자 정보를 해시된 토큰 자체에 담아 클라이언트가 보관하므로, 서버를 무상태(Stateless)로 가볍게 유지</span>할 수 있어 선택했습니다.<br><br>
+                
+                <strong>2. Spring Security와의 결합 동작:</strong><br>
+                Spring Security의 <strong>필터 체인(Filter Chain)</strong> 중간에 커스텀 필터(JwtAuthenticationFilter)를 끼워 넣었습니다. 클라이언트가 API를 요청할 때 HTTP 헤더에 담아 보낸 JWT를 가로채서 서명(Signature)이 유효한지 검증하고, 정상이라면 <code>SecurityContextHolder</code>에 권한 정보를 저장하여 Controller에서 인증된 사용자로 처리되도록 구현했습니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge badge-security">#SpringSecurity</span>
+            <span class="badge badge-security">#JWT</span>
+            <span class="badge">#Stateless</span>
+        </div>
+    </div>
+
+    <!-- Q2: RESTful API와 HTTP 메서드 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) 브라우저 요청 방식에 GET과 POST 외에 어떤 것들이 있나요? 그리고 RESTful API란 무엇이라고 생각하나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>프론트엔드와 백엔드가 협업하기 위한 API 설계 규약을 아는지 묻습니다. CRUD 작업에 맞는 HTTP 메서드 매핑 능력을 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. HTTP 메서드의 종류 (CRUD 매핑):</strong><br>
+                GET(조회), POST(생성) 외에도 데이터의 전체 수정을 뜻하는 <code>PUT</code>, 부분 수정인 <code>PATCH</code>, 데이터 삭제를 뜻하는 <code>DELETE</code>가 있습니다.<br><br>
+                
+                <strong>2. RESTful API의 핵심:</strong><br>
+                URL 주소에 'insert', 'update' 같은 <strong>행위(동사)를 적지 않고 오직 조작할 대상(명사 자원)만 명시</strong>하는 아키텍처 스타일입니다.<br>
+                예를 들어 유저 정보를 수정할 때 <code>/updateUser/1 (POST)</code> 처럼 짜는 것이 아니라, <span class="highlight"><code>/users/1 (PATCH)</code> 형태로 자원(URI)과 행위(Method)를 분리</span>하여 누구나 직관적으로 API의 목적을 알 수 있게 설계하는 것입니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#RESTful_API</span>
+            <span class="badge">#HTTPMethod</span>
+            <span class="badge">#PUT_PATCH_DELETE</span>
+        </div>
+    </div>
+
+    <!-- Q3: Session vs Cookie -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) 사용자 로그인을 구현할 때 주로 묻는 세션(Session)과 쿠키(Cookie)의 차이점은 무엇인가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>HTTP의 본질적인 무상태성(Stateless)을 극복하기 위한 상태 유지 기술을 정확히 비교하고, 보안 관점에서의 장단점을 파악하고 있는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                두 기술의 가장 큰 차이는 <strong>'데이터의 저장 위치'</strong>와 <strong>'보안성'</strong>입니다.
+                <ul>
+                    <li><strong>쿠키 (Cookie):</strong> 사용자 정보가 <strong>클라이언트(브라우저)</strong>에 텍스트 형태로 저장됩니다. 서버 부하가 없지만, 누구나 열어볼 수 있어 <span class="highlight">탈취 및 위변조 위험(보안 취약)</span>이 매우 큽니다.</li>
+                    <li><strong>세션 (Session):</strong> 중요 정보는 <strong>서버의 메모리</strong>에 안전하게 저장하고, 클라이언트에게는 난수로 생성된 <code>JSESSIONID</code>(출입증)만 쿠키를 통해 발급합니다. 보안은 뛰어나지만, 접속자가 많아지면 서버 메모리가 버티지 못하는 단점이 있습니다. (이를 보완하기 위해 나온 것이 바로 JWT입니다.)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#세션</span>
+            <span class="badge">#쿠키</span>
+            <span class="badge">#인증방식</span>
+        </div>
+    </div>
+
+    <!-- Q4: MVC Model 1 vs Model 2 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) MVC 패턴의 Model 1과 Model 2의 차이는 무엇이고, 현재 사용 중인 Spring MVC는 어느 쪽에 해당하나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>웹 개발 아키텍처의 과거와 현재를 묻는 기초 질문입니다. 비즈니스 로직(Controller)과 화면(View)의 분리가 왜 중요한지 알고 있는지 평가합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <ul>
+                    <li><strong>Model 1:</strong> JSP 파일 하나 안에 화면 그리는 HTML 코드와 데이터베이스를 조회하는 자바 코드가 전부 섞여 있는 방식입니다. 개발은 빠르지만 코드가 복잡해져 유지보수가 끔찍합니다.</li>
+                    <li><strong>Model 2:</strong> 클라이언트의 요청을 <strong>서블릿(Controller)</strong>이 먼저 받아 비즈니스 로직을 처리한 후, 결과(Model)만 화면(JSP/Thymeleaf)으로 넘겨 화면을 그리는 방식입니다. 디자이너와 개발자의 작업 영역이 분리됩니다.</li>
+                </ul>
+                현재 사용하는 <span class="highlight">Spring MVC는 철저한 Model 2 방식을 발전시킨 프레임워크</span>이며, 모든 요청을 먼저 받아 분배하는 <code>DispatcherServlet(Front Controller 패턴)</code>을 핵심으로 사용하고 있습니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#MVC패턴</span>
+            <span class="badge">#Model2</span>
+            <span class="badge">#DispatcherServlet</span>
+        </div>
+    </div>
+
+    <!-- Q5: AWS 인프라 배포 -->
+    <div class="section-card" style="margin-bottom: 0;">
+        <h2><span class="q-mark">Q.</span>(기출) 로컬 환경에서 테스트하는 것을 넘어, 굳이 AWS를 이용해서 프로젝트를 클라우드에 배포한 이유가 있나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>단순히 학원 튜토리얼을 따라 한 것인지, 아니면 온프레미스(물리 서버 직접 구축) 대비 클라우드 서버의 이점을 스스로 이해하고 도입했는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                크게 <strong>비용적 이점</strong>과 <strong>유연성</strong> 때문에 AWS(EC2/RDS 등)를 선택했습니다.<br><br>
+                개인 프로젝트를 위해 물리적인 24시간 가동 서버 하드웨어를 구매하고 네트워크를 설정하는 것은 비효율적입니다. AWS를 이용하면 <span class="highlight">초기 인프라 구축 비용 없이 가상의 컴퓨터(EC2)를 빌려 쓴 만큼만 지불</span>하면 되고, 물리적인 하드웨어 관리에 신경 쓰지 않고 애플리케이션 개발에만 온전히 집중할 수 있기 때문입니다.<br><br>
+                추가로, 실무에서 트래픽이 몰렸을 때 서버 사양을 버튼 몇 개로 유연하게 늘리거나 줄일 수 있는 클라우드의 강력한 탄력성(Elastic)을 직접 경험해 보고 싶었습니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#AWS배포</span>
+            <span class="badge">#CloudInfra</span>
+            <span class="badge">#EC2_RDS</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

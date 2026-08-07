@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발자 면접 대비: Database 핵심 질문 (Part 1)</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #3b82f6; /* Blue */
+            --accent: #ef4444; /* Red */
+            --success: #10b981; /* Emerald */
+            --warning: #f59e0b; /* Amber */
+            --db-color: #0284c7; /* Data Blue */
+            --oracle-color: #dc2626; /* Oracle Red */
+            --mysql-color: #ea580c; /* MySQL Orange */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-color);
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* 👑 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #0f172a, #082f49);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--db-color);
+        }
+
+        .header-badge {
+            background: var(--db-color);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header h1 { margin: 0 0 15px 0; font-size: 2.3rem; color: #f8fafc; }
+        .header p { font-size: 1.15rem; color: #bae6fd; margin: 0; font-weight: 300; }
+
+        /* 섹션 공통 스타일 (질문 카드) */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+        
+        .q-mark { color: var(--db-color); font-weight: bold; font-size: 1.6rem; margin-right: 8px; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
+
+        /* 의도 및 답변 박스 */
+        .info-box { background: #eff6ff; border-left: 5px solid var(--secondary); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .info-box h4 { margin: 0 0 8px 0; color: var(--secondary); display: flex; align-items: center; font-size: 1.05rem; }
+        .info-box p { margin: 0; font-size: 0.95rem; color: #475569; }
+
+        .success-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .success-box h4 { margin: 0 0 12px 0; color: var(--success); display: flex; align-items: center; font-size: 1.05rem; }
+        
+        .answer-content { font-size: 1rem; color: #334155; }
+        .answer-content ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
+        .answer-content li { margin-bottom: 8px; }
+
+        /* 태그(Badge) */
+        .badge-group { margin-top: 25px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { display: inline-block; background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
+        .badge-oracle { background: #fee2e2; color: var(--oracle-color); border: 1px solid #fecaca; }
+        .badge-mysql { background: #ffedd5; color: var(--mysql-color); border: 1px solid #fed7aa; }
+
+        /* 텍스트 강조 */
+        .highlight { background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fef08a 40%); font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span class="header-badge">INTERVIEW PREP - DB PART 1</span>
+        <h1>💾 DB 면접 시크릿 노트: Core & SQL 편</h1>
+        <p>오라클과 MySQL의 차이를 명확히 인지하고, 인덱스와 조인의 원리를 아는 탄탄한 기본기를 증명하세요.</p>
+    </div>
+
+    <!-- Q1: RDBMS vs NoSQL -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) RDBMS(관계형 DB)와 NoSQL의 차이점은 무엇이며, 각각의 장단점을 설명해 주시겠어요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>데이터의 성격에 맞게 적절한 데이터베이스 패러다임을 선택할 수 있는 '아키텍처 설계 관점'을 묻는 단골 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. RDBMS (MySQL, Oracle 등):</strong><br>
+                데이터를 2차원 테이블(행과 열) 형태로 저장하며, 엄격한 스키마(구조)와 테이블 간의 관계(Join)를 맺습니다.<br>
+                - <strong>장점:</strong> 데이터의 무결성(정확성)을 완벽하게 보장하며, 복잡한 통계나 트랜잭션 처리에 강합니다. (예: 금융, 결제 시스템)<br>
+                - <strong>단점:</strong> 구조 변경이 까다롭고, 트래픽이 몰릴 때 장비를 여러 대 늘리는 수평 확장(Scale-out)이 어렵습니다.<br><br>
+                
+                <strong>2. NoSQL (MongoDB, Redis 등):</strong><br>
+                정해진 스키마 없이 JSON이나 Key-Value 형태로 데이터를 유연하게 저장합니다.<br>
+                - <strong>장점:</strong> 데이터 구조를 언제든 쉽게 바꿀 수 있고, 서버를 늘려 데이터를 분산 저장하는 수평 확장이 매우 쉽습니다. (예: 실시간 채팅, 로그 수집)<br>
+                - <strong>단점:</strong> 데이터가 중복 저장될 수 있어 수정 시 일관성을 맞추기 어렵고 복잡한 JOIN 쿼리가 힘듭니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#RDBMS</span>
+            <span class="badge">#NoSQL</span>
+            <span class="badge">#데이터무결성</span>
+        </div>
+    </div>
+
+    <!-- Q2: Oracle vs MySQL -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) 오라클(Oracle)과 MySQL을 모두 사용해 보셨는데, 실무 개발 관점에서 두 DB의 차이점이 무엇이었나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>두 DB를 수박 겉핥기로 배운 것이 아니라, 쿼리를 짜면서 체감했던 문법적 차이와 DB의 성격을 스스로 고민해 보았는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                엔터프라이즈급인 오라클과 오픈소스 기반인 MySQL은 문법과 기능에서 꽤 차이가 있었습니다.
+                <ul>
+                    <li><strong>PK(기본키) 생성:</strong> 오라클은 별도의 <code>SEQUENCE</code> 객체를 만들어 <code>NEXTVAL</code>로 번호를 땄지만, MySQL은 테이블 컬럼 자체에 <code>AUTO_INCREMENT</code>를 걸어 훨씬 간편하게 자동 증가를 구현할 수 있었습니다.</li>
+                    <li><strong>페이징 처리:</strong> 게시판 페이징을 할 때 오라클은 <code>ROWNUM</code>을 사용해 인라인 뷰(서브쿼리)를 감싸야 해서 쿼리가 복잡했지만, MySQL은 <code>LIMIT 0, 10</code> 명령어 하나로 매우 직관적으로 처리할 수 있었습니다.</li>
+                    <li><strong>성격:</strong> 대용량 데이터의 안정성과 복잡한 프로시저가 필요하면 오라클이, 가볍고 빠른 웹 서비스 개발에는 MySQL이 적합하다고 느꼈습니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge badge-oracle">#Oracle</span>
+            <span class="badge badge-mysql">#MySQL</span>
+            <span class="badge">#Sequence_vs_AutoIncrement</span>
+        </div>
+    </div>
+
+    <!-- Q3: Inner Join vs Outer Join -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) DB에서 조인(Join)을 사용할 때, Inner Join과 Outer Join(Left/Right)의 차이점은 무엇인가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>가장 기본적인 SQL 작성 능력을 묻습니다. 벤 다이어그램의 '교집합'과 '합집합' 개념을 이해하고 데이터 누락을 방지할 수 있는지 평가합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                두 테이블을 합칠 때 '일치하지 않는 데이터'를 어떻게 버릴 것이냐 살릴 것이냐의 차이입니다.
+                <ul>
+                    <li><strong>Inner Join (내부 조인):</strong> 두 테이블 간에 <strong>조인 조건이 완벽히 일치하는 데이터(교집합)만</strong> 가져옵니다. 예를 들어, '부서가 없는 신입사원'은 결과에서 아예 누락되어 사라집니다.</li>
+                    <li><strong>Left Outer Join (외부 조인):</strong> <strong>왼쪽 테이블의 모든 데이터를 무조건 살린 채로</strong> 오른쪽 테이블을 붙입니다. 부서가 없는 신입사원도 화면에 정상적으로 출력되며, 부서 정보 칸에는 <code>NULL</code> 값이 채워지게 됩니다. (데이터 누락을 방지하기 위해 실무에서 가장 많이 씁니다.)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#JOIN</span>
+            <span class="badge">#InnerJoin</span>
+            <span class="badge">#LeftOuterJoin</span>
+        </div>
+    </div>
+
+    <!-- Q4: DB Index -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) 데이터베이스에서 인덱스(Index)란 무엇이며, 어떤 원리로 검색 속도가 빨라지나요? 무조건 인덱스를 많이 거는 것이 좋을까요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>쿼리 튜닝의 시작점입니다. 인덱스의 자료구조(B-Tree) 원리를 아는지, 그리고 인덱스의 '치명적인 단점(Trade-off)'을 이해하여 무분별한 사용을 피할 줄 아는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. 인덱스의 개념과 원리:</strong><br>
+                인덱스는 두꺼운 전공 서적 맨 뒤에 있는 <strong>'찾아보기(색인)'</strong>와 같습니다. 테이블을 처음부터 끝까지 다 뒤지는 것(Full Scan)이 아니라, 트리(B-Tree) 구조로 미리 정렬해 둔 색인을 타기 때문에 <span class="highlight">조회(SELECT) 속도를 비약적으로 높여줍니다.</span><br><br>
+                
+                <strong>2. 무조건 많이 걸면 안 되는 이유 (단점):</strong><br>
+                인덱스도 결국 하드디스크 공간을 차지하는 '또 다른 테이블'입니다. 따라서 데이터가 새롭게 <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> 될 때마다 <strong>원본 테이블뿐만 아니라 인덱스 테이블까지 같이 정렬하고 갱신</strong>해주어야 합니다.<br>
+                조회 속도는 빨라지지만 데이터 변경 속도는 오히려 느려지므로, 조회가 빈번한 컬럼에만 전략적으로 걸어주어야 합니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#Index</span>
+            <span class="badge">#B-Tree</span>
+            <span class="badge">#조회성능튜닝</span>
+        </div>
+    </div>
+
+    <!-- Q5: 트랜잭션 (Transaction) -->
+    <div class="section-card" style="margin-bottom: 0;">
+        <h2><span class="q-mark">Q.</span>데이터베이스의 트랜잭션(Transaction)이란 무엇인가요? '계좌 이체' 상황을 예로 들어 설명해 주세요.</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>데이터의 무결성과 일관성을 지키기 위한 핵심 개념인 ACID 특성 중 '원자성(Atomicity)'을 실생활 비유로 완벽히 설명할 수 있는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                트랜잭션은 <strong>'더 이상 쪼갤 수 없는 하나의 논리적 작업 단위'</strong>를 말합니다. 이 작업들은 <span class="highlight">"모두 완벽하게 성공(Commit)하거나, 아니면 아예 모두 실패한 상태(Rollback)로 되돌아가야 한다"</span>는 원칙(원자성)을 가집니다.<br><br>
+                
+                <strong>[계좌 이체 예시]</strong><br>
+                A가 B에게 1만 원을 보낼 때, <strong>1) A의 통장에서 1만 원을 뺀다. 2) B의 통장에 1만 원을 더한다.</strong> 이 두 쿼리는 무조건 하나의 트랜잭션으로 묶여야 합니다.<br>
+                만약 A의 돈만 빠져나간 상태에서 서버가 다운(에러)된다면, 돈이 증발하는 대형 사고가 발생합니다. 트랜잭션을 걸어두면 에러 발생 시 즉시 <code>ROLLBACK</code>을 수행해 A의 돈을 원래대로 복구시킴으로써 데이터의 안전성을 보장합니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#트랜잭션</span>
+            <span class="badge">#Commit_Rollback</span>
+            <span class="badge">#ACID</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

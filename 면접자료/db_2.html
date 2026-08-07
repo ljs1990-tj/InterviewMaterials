@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발자 면접 대비: Database 핵심 질문 (Part 2)</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #3b82f6; /* Blue */
+            --accent: #ef4444; /* Red */
+            --success: #10b981; /* Emerald */
+            --warning: #f59e0b; /* Amber */
+            --db-color: #0284c7; /* Data Blue */
+            --tuning-color: #7c3aed; /* Violet */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-color);
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* 👑 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #0f172a, #082f49);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--tuning-color);
+        }
+
+        .header-badge {
+            background: var(--tuning-color);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header h1 { margin: 0 0 15px 0; font-size: 2.3rem; color: #f8fafc; }
+        .header p { font-size: 1.15rem; color: #bae6fd; margin: 0; font-weight: 300; }
+
+        /* 섹션 공통 스타일 (질문 카드) */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+        
+        .q-mark { color: var(--tuning-color); font-weight: bold; font-size: 1.6rem; margin-right: 8px; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
+
+        /* 의도 및 답변 박스 */
+        .info-box { background: #eff6ff; border-left: 5px solid var(--secondary); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .info-box h4 { margin: 0 0 8px 0; color: var(--secondary); display: flex; align-items: center; font-size: 1.05rem; }
+        .info-box p { margin: 0; font-size: 0.95rem; color: #475569; }
+
+        .success-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .success-box h4 { margin: 0 0 12px 0; color: var(--success); display: flex; align-items: center; font-size: 1.05rem; }
+        
+        .answer-content { font-size: 1rem; color: #334155; }
+        .answer-content ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
+        .answer-content li { margin-bottom: 8px; }
+
+        /* 태그(Badge) */
+        .badge-group { margin-top: 25px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { display: inline-block; background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
+
+        /* 텍스트 강조 */
+        .highlight { background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fef08a 40%); font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span class="header-badge">INTERVIEW PREP - DB PART 2</span>
+        <h1>🗄️ DB 면접 시크릿 노트: 고급 쿼리 & 튜닝</h1>
+        <p>프로시저부터 페이징 최적화까지, 데이터베이스의 한계를 극복하는 아키텍처적 고민을 어필하세요.</p>
+    </div>
+
+    <!-- Q1: 프로시저와 트리거 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) DB에서 프로시저(Procedure)와 트리거(Trigger)를 써본 적 있나요? 이 둘의 차이점과 실무에서의 장단점을 설명해 주세요.</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>DB 내부 프로그래밍(PL/SQL 등) 경험을 묻는 질문입니다. 장점뿐만 아니라, 최근 트렌드에서 이를 지양하는 이유(단점)까지 객관적으로 파악하고 있는지 묻습니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. 두 개념의 차이:</strong><br>
+                <ul>
+                    <li><strong>프로시저:</strong> 여러 개의 SQL 문을 마치 하나의 함수처럼 DB에 저장해 두고, 애플리케이션에서 <code>CALL</code> 명령어로 호출해서 사용하는 수동 실행 방식입니다.</li>
+                    <li><strong>트리거:</strong> 특정 테이블에 <code>INSERT, UPDATE, DELETE</code> 이벤트가 발생하면, 개발자가 호출하지 않아도 <strong>자동(방아쇠)으로 실행</strong>되는 로직입니다. 주로 데이터 삽입/삭제 시 백업 로그를 남길 때 씁니다.</li>
+                </ul>
+                <strong>2. 장단점 (핵심 어필):</strong><br>
+                복잡한 연산을 DB에서 바로 처리하므로 네트워크 트래픽이 줄어 속도가 매우 빠르다는 장점이 있습니다. <span class="highlight">하지만 로직이 DB에 묶여버리기 때문에 Git으로 버전 관리를 하기가 어렵고, 에러 발생 시 디버깅이 힘들어 최신 백엔드 트렌드에서는 비즈니스 로직을 가급적 자바(서버) 쪽으로 빼는 추세입니다.</span>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#Procedure</span>
+            <span class="badge">#Trigger</span>
+            <span class="badge">#DB프로그래밍</span>
+        </div>
+    </div>
+
+    <!-- Q2: 정규화와 반정규화 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>데이터베이스 설계 시 '정규화(Normalization)'를 하는 이유는 무엇인가요? 그렇다면 '반정규화(De-normalization)'는 왜 하는 걸까요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>테이블 설계(ERD) 능력을 평가합니다. 무조건적인 원칙 준수(정규화)보다, 서비스 성능을 위해 원칙을 깨는 유연함(반정규화)을 아는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. 정규화를 하는 이유:</strong><br>
+                하나의 테이블에 너무 많은 정보를 때려 넣으면 데이터가 불필요하게 중복됩니다. 이로 인해 데이터를 수정하거나 삭제할 때 꼬여버리는 이상 현상(Anomaly)이 발생하므로, <span class="highlight">테이블을 잘게 쪼개어 데이터의 무결성과 일관성을 지키기 위해</span> 정규화를 합니다.<br><br>
+                
+                <strong>2. 반정규화를 하는 이유 (Trade-off):</strong><br>
+                하지만 테이블을 너무 많이 쪼개놓으면, 게시판 글 하나를 읽을 때마다 테이블 5~6개를 조인(Join)해야 해서 <strong>조회(SELECT) 성능이 극도로 저하</strong>됩니다. 따라서 데이터의 무결성을 조금 포기하더라도, 응답 속도를 높이기 위해 <strong>의도적으로 데이터를 중복 저장하거나 테이블을 다시 합치는 것을 반정규화</strong>라고 합니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#정규화</span>
+            <span class="badge">#반정규화</span>
+            <span class="badge">#이상현상(Anomaly)</span>
+        </div>
+    </div>
+
+    <!-- Q3: 뷰(View)의 사용 목적 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>DB에서 뷰(View) 객체는 무엇이며, 굳이 실제 테이블이 아닌 가상 테이블(View)을 만들어 사용하는 이유는 무엇인가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>복잡한 쿼리를 추상화하여 사용자의 편의성을 높이고, 중요한 데이터를 은닉하는 DB 보안 관점의 지식을 묻습니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                뷰(View)는 물리적인 데이터를 가지지 않고, <strong>자주 사용하는 SELECT 쿼리문 자체를 저장해 둔 '가상 테이블'</strong>입니다.<br><br>
+                사용하는 주된 이유는 두 가지입니다.
+                <ul>
+                    <li><strong>편의성:</strong> 복잡한 JOIN이 떡칠된 쿼리를 뷰로 만들어 두면, 개발자는 단순히 <code>SELECT * FROM view_name</code>만 쳐도 되므로 코드가 훨씬 깔끔해집니다.</li>
+                    <li><strong>보안(은닉화):</strong> 사원 테이블에 '연봉'이나 '주민번호' 같은 민감한 정보가 있을 때, <span class="highlight">이 컬럼들을 제외한 나머지 정보만 묶어서 뷰로 제공</span>함으로써 외부 개발자나 사용자가 민감한 데이터에 접근하는 것을 원천 차단할 수 있습니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#View</span>
+            <span class="badge">#DB보안</span>
+            <span class="badge">#가상테이블</span>
+        </div>
+    </div>
+
+    <!-- Q4: 페이징 최적화 (No-Offset) -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>게시판에 데이터가 1,000만 건이 있습니다. 기존의 LIMIT, OFFSET 방식으로 마지막 페이지를 조회하면 매우 느린데, 이를 어떻게 최적화할 수 있을까요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>실제 서비스에서 트래픽이 커졌을 때 발생하는 가장 대표적인 성능 이슈(병목)인 '페이징 성능 저하'를 해결할 수 있는 능력이 있는지 묻는 고급 튜닝 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. 기존 방식의 문제점 (LIMIT, OFFSET):</strong><br>
+                <code>LIMIT 9999000, 10</code> 처럼 쿼리를 날리면, DB는 999만 9천 번 째까지 데이터를 다 읽은 다음 앞의 것들을 버리고 마지막 10개만 가져옵니다. <strong>뒤로 갈수록 읽어야 할 데이터가 기하급수적으로 늘어나 풀 스캔에 가까운 부하</strong>가 발생합니다.<br><br>
+                
+                <strong>2. 해결책 (No-Offset / 커서 기반 페이징):</strong><br>
+                마지막으로 조회했던 게시글의 PK(예: <code>id = 9999000</code>)를 클라이언트가 기억했다가 서버로 넘겨줍니다. <br>
+                그리고 쿼리를 <code>WHERE id > 9999000 LIMIT 10</code> 처럼 작성하면, <span class="highlight">PK 인덱스를 타고 해당 위치로 즉시 점프(Index Seek)한 뒤 딱 10개만 읽고 끝나므로</span> 데이터가 아무리 많아도 조회 속도가 0.1초 이내로 일정하게 유지됩니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#페이징최적화</span>
+            <span class="badge">#No-Offset</span>
+            <span class="badge">#Cursor페이징</span>
+        </div>
+    </div>
+
+    <!-- Q5: 커넥션 및 락(Lock) -->
+    <div class="section-card" style="margin-bottom: 0;">
+        <h2><span class="q-mark">Q.</span>수강신청이나 티켓팅처럼 여러 사용자가 동시에 동일한 데이터(재고)를 수정하려고 할 때 발생하는 문제를 어떻게 해결할 수 있나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>동시성 제어(Concurrency Control)에 대한 이해도를 평가합니다. DB Lock의 개념을 알고 데이터 정합성을 지킬 수 있는지 확인하는 고급 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                여러 트랜잭션이 동시에 같은 데이터를 수정하려 하면 갱신 손실(Lost Update) 등 데이터 정합성이 깨지는 문제가 발생합니다. 이를 막기 위해 <strong>DB Lock(락)</strong>을 사용해야 합니다.<br><br>
+                
+                <ul>
+                    <li><strong>비관적 락(Pessimistic Lock):</strong> "무조건 충돌이 날 것이다"라고 가정하고, <code>SELECT ... FOR UPDATE</code> 쿼리를 통해 <span class="highlight">데이터를 읽는 시점부터 아예 DB 행(Row)에 배타 락(X-Lock)을 걸어버리는 방법</span>입니다. 한 사람이 수정을 마칠 때까지 다른 사람은 대기하게 되므로 데이터 안전성이 매우 높지만, 속도가 느려질 수 있습니다.</li>
+                    <li><strong>낙관적 락(Optimistic Lock):</strong> 테이블에 <code>version</code> 컬럼을 추가하여, 내가 읽었던 버전과 수정할 때의 버전이 다르면 예외(Exception)를 발생시키고 애플리케이션 단에서 재시도하게 만드는 방식입니다. 읽기가 많은 서비스에서 성능상 유리합니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#동시성제어</span>
+            <span class="badge">#비관적락</span>
+            <span class="badge">#낙관적락</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발자 면접 대비: Spring 핵심 질문 (Part 1)</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #3b82f6; /* Blue */
+            --accent: #ef4444; /* Red */
+            --success: #10b981; /* Emerald */
+            --warning: #f59e0b; /* Amber */
+            --spring-color: #6db33f; /* Spring Green */
+            --spring-dark: #5a9434;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-color);
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* 👑 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--spring-color);
+        }
+
+        .header-badge {
+            background: var(--spring-color);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header h1 { margin: 0 0 15px 0; font-size: 2.3rem; color: #f8fafc; }
+        .header p { font-size: 1.15rem; color: #cbd5e1; margin: 0; font-weight: 300; }
+
+        /* 섹션 공통 스타일 (질문 카드) */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+        
+        .q-mark { color: var(--spring-color); font-weight: bold; font-size: 1.6rem; margin-right: 8px; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
+
+        /* 의도 및 답변 박스 */
+        .info-box { background: #eff6ff; border-left: 5px solid var(--secondary); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .info-box h4 { margin: 0 0 8px 0; color: var(--secondary); display: flex; align-items: center; font-size: 1.05rem; }
+        .info-box p { margin: 0; font-size: 0.95rem; color: #475569; }
+
+        .success-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .success-box h4 { margin: 0 0 12px 0; color: var(--success); display: flex; align-items: center; font-size: 1.05rem; }
+        
+        .answer-content { font-size: 1rem; color: #334155; }
+        .answer-content ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
+        .answer-content li { margin-bottom: 8px; }
+
+        /* 태그(Badge) */
+        .badge-group { margin-top: 25px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { display: inline-block; background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
+        .badge-spring { background: #dcfce7; color: var(--spring-dark); border: 1px solid #bbf7d0; }
+
+        /* 텍스트 강조 */
+        .highlight { background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fef08a 40%); font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span class="header-badge">INTERVIEW PREP - SPRING PART 1</span>
+        <h1>🌱 Spring 면접 시크릿 노트: Core & MVC</h1>
+        <p>개발자가 아닌 '스프링 컨테이너'가 애플리케이션을 지배하는 IoC/DI 사상과 Boot의 자동화 원리를 증명하세요.</p>
+    </div>
+
+    <!-- Q1: Spring vs Spring Boot -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(필수 기출) 기존의 Spring Framework와 Spring Boot의 결정적인 차이점은 무엇인가요? 왜 Boot를 사용하셨나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>단순히 남들이 쓰니까 쓰는 것이 아니라, 과거 레거시 스프링의 고질적인 문제(환경설정 지옥)를 이해하고 Boot가 이를 어떻게 기술적으로 해결했는지 파악하고 있는지 묻습니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                가장 큰 차이는 <strong>'설정의 자동화'</strong>와 <strong>'내장 웹 서버'</strong>의 유무입니다.
+                <ul>
+                    <li><strong>1. 자동 설정 (Auto-Configuration):</strong> 기존 Spring은 프로젝트 세팅을 위해 엄청난 양의 XML 파일 설정과 라이브러리 버전 호환성을 개발자가 직접 맞춰야 했습니다. 반면 Spring Boot는 <code>@SpringBootApplication</code> 어노테이션을 통해 자주 쓰는 설정들을 <strong>관례에 따라 자동으로 설정(Auto Configuration)</strong>해 주고, <code>starter</code> 의존성을 통해 버전 충돌을 알아서 해결해 줍니다.</li>
+                    <li><strong>2. 내장 WAS (Embedded Server):</strong> 기존에는 Tomcat 같은 웹 서버(WAS)를 따로 설치하고 WAR 파일로 빌드해서 배포해야 했습니다. 하지만 Boot는 <strong>Tomcat이 내장</strong>되어 있어 독립적으로 실행 가능한 JAR 파일 하나만 빌드하면 바로 서버를 띄울 수 있어 배포가 압도적으로 편리해졌습니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge badge-spring">#SpringBoot</span>
+            <span class="badge badge-spring">#AutoConfiguration</span>
+            <span class="badge badge-spring">#내장Tomcat</span>
+        </div>
+    </div>
+
+    <!-- Q2: IoC와 DI -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>스프링의 핵심 사상인 IoC(제어의 역전)와 DI(의존성 주입)에 대해 본인의 언어로 설명해 주시겠어요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>스프링 컨테이너의 존재 이유를 묻는 가장 근본적인 질문입니다. 객체의 생명주기를 누가 관리하며, 왜 결합도를 낮춰야 하는지 객체지향적 관점에서 설명해야 합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. IoC (Inversion of Control, 제어의 역전):</strong><br>
+                기존에는 개발자가 직접 <code>new</code> 키워드로 객체를 생성하고 관리했습니다. 하지만 스프링에서는 <span class="highlight">객체의 생성부터 소멸까지의 주도권(제어권)을 개발자가 아닌 '스프링 컨테이너'가 가져갑니다.</span> 이를 제어의 역전이라고 합니다.<br><br>
+                
+                <strong>2. DI (Dependency Injection, 의존성 주입):</strong><br>
+                IoC를 구현하는 구체적인 방법입니다. 객체 내부에서 사용할 다른 객체를 직접 생성하지 않고, <strong>외부(스프링 컨테이너)에서 만들어진 객체(Bean)를 조립하듯 주입받는 것</strong>입니다.<br>
+                덕분에 부품을 갈아 끼우기 쉬워져 객체 간의 결합도가 낮아지고(느슨한 결합), 테스트 코드를 작성하거나 유지보수하기가 훨씬 수월해집니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#IoC</span>
+            <span class="badge">#DI</span>
+            <span class="badge">#느슨한결합</span>
+        </div>
+    </div>
+
+    <!-- Q3: 생성자 주입 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>DI(의존성 주입) 방식에는 필드 주입, 수정자(Setter) 주입, 생성자 주입이 있는데, 왜 가급적 '생성자 주입'을 권장하나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>실무에서 <code>@Autowired</code>를 필드에 무분별하게 남발하지 않는지, 불변성(Immutability)과 순환 참조의 개념을 인지하고 코드를 짜는지 확인하는 실무 밀착형 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                스프링 공식 문서에서도 <strong>생성자 주입(Constructor Injection)</strong>을 강력히 권장하며, 그 이유는 크게 3가지입니다.
+                <ul>
+                    <li><strong>1. 불변성 보장:</strong> 객체 생성 시점에 의존성이 딱 한 번만 주입되므로, 필드에 <code>final</code> 키워드를 선언할 수 있습니다. 런타임에 의존성이 임의로 변경되는 버그를 원천 차단합니다.</li>
+                    <li><strong>2. 순환 참조 사전 방지:</strong> A가 B를 참조하고 B가 A를 참조하는 순환 참조 상태일 때, 필드 주입은 앱이 실행되다가 해당 메서드를 호출할 때야 에러가 터집니다. 하지만 생성자 주입은 <strong>애플리케이션 구동(컴파일) 시점에 즉시 에러를 뱉어내어</strong> 치명적인 장애를 미리 막아줍니다.</li>
+                    <li><strong>3. POJO 테스트 용이:</strong> 스프링 컨테이너 없이도 순수 자바 코드로 단위 테스트(Unit Test)를 작성할 때 직접 목(Mock) 객체를 주입하기 가장 좋습니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#생성자주입</span>
+            <span class="badge">#불변성</span>
+            <span class="badge">#순환참조방지</span>
+        </div>
+    </div>
+
+    <!-- Q4: Bean과 Singleton -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>스프링 빈(Bean)은 기본적으로 싱글톤(Singleton)으로 관리됩니다. 왜 싱글톤을 쓰며, 개발 시 어떤 점을 가장 주의해야 하나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>트래픽이 몰리는 웹 서버의 특성을 이해하고 있는지, 멀티스레드 환경에서 싱글톤 객체가 가질 수 있는 '상태 유지(Stateful)'의 위험성을 알고 있는지 검증합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. 싱글톤을 쓰는 이유:</strong><br>
+                대규모 트래픽이 발생하는 웹 환경에서, 요청이 올 때마다 Controller나 Service 객체를 <code>new</code>로 새로 생성하면 메모리 낭비가 극심합니다. 따라서 스프링 컨테이너 구동 시 <span class="highlight">객체를 딱 1개만 생성해두고 모든 사용자의 요청이 그 객체를 공유(재사용)</span>하여 메모리 효율을 극대화합니다.<br><br>
+                
+                <strong>2. 주의할 점 (무상태성 유지):</strong><br>
+                여러 스레드(사용자)가 하나의 빈 객체를 동시에 공유하므로, <strong>절대 객체 내부에 특정 클라이언트에 의존적인 상태(공유 필드 변수)를 유지하게 설계하면 안 됩니다(Stateless 설계).</strong> 만약 사용자 정보를 전역 변수 필드에 저장하면, A 사용자의 데이터가 B 사용자에게 노출되는 끔찍한 동시성 사고가 발생할 수 있습니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#SpringBean</span>
+            <span class="badge">#Singleton</span>
+            <span class="badge">#Stateless</span>
+        </div>
+    </div>
+
+    <!-- Q5: AOP (관점 지향 프로그래밍) -->
+    <div class="section-card" style="margin-bottom: 0;">
+        <h2><span class="q-mark">Q.</span>스프링의 AOP(Aspect-Oriented Programming)란 무엇이고, 실무에서 어떤 기능들을 구현할 때 주로 사용하나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>비즈니스 로직과 공통 부가 로직을 분리하여 코드의 중복을 줄이고 유지보수성을 높이는 횡단 관심사(Cross-Cutting Concerns)의 개념을 묻는 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. AOP의 개념:</strong><br>
+                애플리케이션 전반에 걸쳐 공통적으로 반복되는 기능(부가 기능)들을 핵심 비즈니스 로직에서 떼어내어 <strong>별도의 모듈(Aspect)로 분리하고, 필요한 시점(Pointcut)에 동적으로 끼워 넣는 기법</strong>입니다.<br><br>
+                
+                <strong>2. 실무 활용 사례 (횡단 관심사):</strong><br>
+                Service 클래스의 수많은 메서드들에 매번 로그를 찍는 코드를 넣으면 중복이 발생합니다. 이때 AOP를 활용해 <span class="highlight">1) API 실행 시간 측정 로그, 2) DB 트랜잭션 관리(@Transactional), 3) 권한/인가 체크</span> 등을 비즈니스 로직 코드 수정 없이 외부에서 투명하게 적용할 수 있습니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#AOP</span>
+            <span class="badge">#횡단관심사</span>
+            <span class="badge">#트랜잭션관리</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

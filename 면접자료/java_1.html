@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발자 면접 대비: Java 핵심 질문</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #3b82f6; /* Blue */
+            --accent: #ef4444; /* Red */
+            --success: #10b981; /* Emerald */
+            --warning: #f59e0b; /* Amber */
+            --info: #8b5cf6; /* Purple */
+            --java-color: #f89820; /* Java Orange for subtle highlights */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-color);
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* 👑 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--java-color);
+        }
+
+        .header-badge {
+            background: var(--java-color);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header h1 { margin: 0 0 15px 0; font-size: 2.3rem; color: #f8fafc; }
+        .header p { font-size: 1.15rem; color: #cbd5e1; margin: 0; font-weight: 300; }
+
+        /* 섹션 공통 스타일 (질문 카드) */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+        
+        .q-mark { color: var(--java-color); font-weight: bold; font-size: 1.6rem; margin-right: 8px; }
+
+        /* 의도 및 답변 박스 */
+        .info-box { background: #eff6ff; border-left: 5px solid var(--secondary); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .info-box h4 { margin: 0 0 8px 0; color: var(--secondary); display: flex; align-items: center; font-size: 1.05rem; }
+        .info-box p { margin: 0; font-size: 0.95rem; color: #475569; }
+
+        .success-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .success-box h4 { margin: 0 0 12px 0; color: var(--success); display: flex; align-items: center; font-size: 1.05rem; }
+        
+        .answer-content { font-size: 1rem; color: #334155; }
+        .answer-content ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
+        .answer-content li { margin-bottom: 8px; }
+
+        /* 태그(Badge) */
+        .badge-group { margin-top: 25px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { 
+            display: inline-block; 
+            background: #e2e8f0; 
+            color: #475569; 
+            padding: 4px 12px; 
+            border-radius: 6px; 
+            font-size: 0.85rem; 
+            font-weight: bold; 
+        }
+
+        /* 텍스트 강조 */
+        .highlight { background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fef08a 40%); font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span class="header-badge">INTERVIEW PREP</span>
+        <h1>☕ Java 면접 시크릿 노트</h1>
+        <p>면접관의 의도를 파악하고, 신입 개발자에게 기대하는 '핵심 기본기'를 증명하세요.</p>
+    </div>
+
+    <!-- Q1: 객체지향 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>Java의 객체지향 특징 4가지에 대해 본인의 언어로 설명해 주시겠어요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>단순히 암기한 내용을 읊는 것을 원하지 않습니다. 각 특징이 <strong>'유지보수와 코드 재사용'에 어떤 도움을 주는지</strong> 실무적인 관점이나 비유를 통해 이해하고 있는지 평가합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                네, 객체지향의 4대 특징은 캡슐화, 상속, 추상화, 다형성입니다.
+                <ul>
+                    <li><strong>캡슐화:</strong> 외부에서 알 필요 없는 내부 로직을 숨기고, 접근 제어자(private)를 통해 데이터를 보호하는 것입니다. 약 먹을 때 캡슐 안의 가루약 성분을 몰라도 효능을 얻는 것과 같습니다.</li>
+                    <li><strong>상속:</strong> 부모 클래스의 기능과 속성을 자식 클래스가 물려받아 코드를 재사용하는 것입니다. (단, 실무에서는 결합도가 높아져 상속보다는 '조합(Composition)'을 선호하는 추세라고 덧붙이면 플러스 점수!)</li>
+                    <li><strong>추상화:</strong> 복잡한 시스템에서 핵심적인 개념이나 기능만 뽑아내어 인터페이스나 추상 클래스로 정의하는 것입니다.</li>
+                    <li><span class="highlight">다형성 (가장 중요!):</span> 하나의 객체가 여러 가지 타입을 가질 수 있는 성질입니다. 부모 타입의 변수로 다양한 자식 객체를 다룰 수 있어(Overriding), 코드 변경 없이 새로운 기능을 유연하게 추가할 수 있게 해줍니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#객체지향</span>
+            <span class="badge">#OOP</span>
+            <span class="badge">#다형성</span>
+        </div>
+    </div>
+
+    <!-- Q2: 인터페이스와 추상클래스 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) 인터페이스(Interface)와 추상 클래스(Abstract Class)의 차이점은 무엇이고, 언제 각각을 사용해야 하나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>두 개념의 문법적 차이(다중 상속 여부 등)를 아는지 확인하고, 나아가 <strong>'설계적 관점'</strong>에서 목적에 맞게 두 가지를 구분해서 쓸 수 있는지 묻는 단골 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                가장 큰 문법적 차이는 <strong>'다중 상속'</strong> 여부입니다. 인터페이스는 다중 구현이 가능하지만, 추상 클래스는 단일 상속만 가능합니다. 하지만 설계적인 목적이 더 다릅니다.
+                <ul>
+                    <li><strong>추상 클래스 ("~이다", IS-A):</strong> 부모와 자식이 밀접하게 연관되어 있고, 공통된 필드나 기능(일반 메서드)을 물려주어 코드 중복을 줄일 때 사용합니다. (예: <code>Animal</code> 추상 클래스와 <code>Dog</code>, <code>Cat</code>)</li>
+                    <li><strong>인터페이스 ("~할 수 있는", HAS-A/CAN-DO):</strong> 서로 관련이 없는 클래스들이라도, <strong>"이 기능은 무조건 구현해야 해!"</strong>라는 규약(설계도)을 강제할 때 사용합니다. 다형성을 구현하는 핵심 도구입니다. (예: <code>Flyable</code> 인터페이스를 새와 비행기가 각각 구현)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#Interface</span>
+            <span class="badge">#AbstractClass</span>
+            <span class="badge">#설계</span>
+        </div>
+    </div>
+
+    <!-- Q3: String, StringBuilder, StringBuffer -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>String과 StringBuilder, StringBuffer의 차이점은 무엇인가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>자바의 메모리 구조(불변 객체)에 대한 이해도와, 성능을 고려하여 코드를 작성할 줄 아는지 평가합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. 불변성 (Immutability):</strong><br>
+                가장 큰 차이는 <code>String</code>은 <span class="highlight">불변(Immutable) 객체</span>라는 점입니다. String에 '+' 연산으로 문자열을 합치면 기존 객체를 수정하는 것이 아니라, 새로운 객체를 메모리에 계속 생성하므로 성능 저하와 메모리 낭비가 심합니다.<br><br>
+                
+                <strong>2. 가변성 (Mutability):</strong><br>
+                반면 <code>StringBuilder</code>와 <code>StringBuffer</code>는 <strong>가변(Mutable) 객체</strong>입니다. 객체를 새로 만들지 않고 내부 버퍼를 이용해 문자열을 수정하므로 성능이 좋습니다.<br><br>
+
+                <strong>3. 쓰레드 동기화:</strong><br>
+                <code>StringBuffer</code>는 멀티스레드 환경에서 안전하게 동작하도록 동기화(Synchronized)가 되어 있어 약간 느립니다. 반면 <code>StringBuilder</code>는 동기화가 없어서 단일 스레드 환경에서 가장 빠릅니다. 따라서 문자열 조작이 많을 때는 주로 <strong>StringBuilder</strong>를 사용합니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#불변객체</span>
+            <span class="badge">#메모리효율</span>
+            <span class="badge">#StringBuilder</span>
+        </div>
+    </div>
+
+    <!-- Q4: 컬렉션 프레임워크 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출 변형) ArrayList와 LinkedList의 차이는 무엇이고, 어떤 상황에서 ArrayList를 쓰는 것이 유리할까요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>자료구조의 기본 지식을 묻는 질문입니다. 데이터가 메모리에 어떻게 저장되는지 원리를 알고, 상황에 맞는 컬렉션을 선택할 수 있는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                두 컬렉션은 데이터가 메모리에 저장되는 구조가 다릅니다.
+                <ul>
+                    <li><strong>ArrayList (조회에 유리):</strong> 데이터가 메모리에 연속적으로 나열되어 있습니다. 방 번호(인덱스)만 알면 한 번에 접근할 수 있어 <strong>데이터 조회가 매우 빠릅니다.</strong> 하지만 중간에 데이터를 삽입/삭제할 때는 뒤의 데이터들을 모두 밀거나 당겨야 해서 속도가 매우 느립니다.</li>
+                    <li><strong>LinkedList (삽입/삭제에 유리):</strong> 데이터가 흩어져 있고 서로 선(링크)으로 연결되어 있습니다. 중간에 데이터를 추가하거나 지울 때 선만 끊어서 다시 연결하면 되므로 <strong>삽입/삭제가 매우 빠릅니다.</strong> 하지만 특정 데이터를 찾으려면 처음부터 선을 따라가야 해서 조회가 느립니다.</li>
+                </ul>
+                결론적으로, 웹 서비스의 게시판 목록처럼 <strong>한 번 저장하고 '조회'를 압도적으로 많이 하는 상황</strong>에서는 <code>ArrayList</code>를 사용하는 것이 유리합니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#자료구조</span>
+            <span class="badge">#Collection</span>
+            <span class="badge">#ArrayList</span>
+        </div>
+    </div>
+
+    <!-- Q5: 예외 처리 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>Checked Exception과 Unchecked Exception의 차이는 무엇인가요? 스프링 트랜잭션과 연관 지어 설명해 줄 수 있나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>에러가 났을 때 컴파일러가 강제하는지 여부를 아는지 확인하고, 실무(Spring)에서 트랜잭션 롤백 정책이 예외 종류에 따라 어떻게 달라지는지 묻는 약간 난이도 있는 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>1. 컴파일 시점의 확인:</strong><br>
+                <code>Checked Exception</code>(예: IOException)은 컴파일러가 "너 이거 에러 날 수 있으니까 반드시 try-catch 하거나 throws로 던져!"라고 강제하는 예외입니다. 반면 <code>Unchecked Exception</code>(예: NullPointerException, RuntimeException)은 실행 도중(Runtime)에 발생하며 명시적인 처리를 강제하지 않습니다.<br><br>
+                
+                <strong>2. 스프링 트랜잭션(@Transactional)의 롤백:</strong><br>
+                스프링의 기본 설정상 <span class="highlight">Unchecked Exception(RuntimeException 하위)이 발생하면 자동으로 트랜잭션을 롤백(Rollback)</span>합니다. 하지만 Checked Exception이 발생하면 기본적으로 롤백하지 않습니다. (만약 롤백시키고 싶다면 <code>@Transactional(rollbackFor = Exception.class)</code> 처럼 명시해 주어야 합니다.)
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#예외처리</span>
+            <span class="badge">#Exception</span>
+            <span class="badge">#Spring트랜잭션</span>
+        </div>
+    </div>
+
+    <!-- Q6: JVM과 가비지 컬렉션 -->
+    <div class="section-card" style="margin-bottom: 0;">
+        <h2><span class="q-mark">Q.</span>Java는 메모리 관리를 개발자가 직접 하지 않는데, 객체가 어떻게 메모리에서 지워지는지 (Garbage Collection) 설명해 볼래요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>JVM(Java Virtual Machine)의 동작 원리와 메모리 구조(Heap 영역)에 대한 기초 지식이 있는지 확인하는 단골 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                Java 프로그램이 실행되면 생성된 객체들은 JVM의 <strong>힙(Heap) 메모리 영역</strong>에 저장됩니다.<br><br>
+                이때 Garbage Collector(GC)는 주기적으로 힙 메모리를 돌면서, 더 이상 어떤 변수에서도 참조하고 있지 않은 <span class="highlight">'Unreachable(도달 불가능한)' 객체들을 찾아내어 메모리에서 자동으로 해제(청소)</span>합니다.<br><br>
+                덕분에 개발자가 수동으로 메모리를 비워주지 않아도 되어 생산성이 높아지고 메모리 누수(Memory Leak) 위험이 줄어듭니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#JVM</span>
+            <span class="badge">#GarbageCollection</span>
+            <span class="badge">#메모리구조</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

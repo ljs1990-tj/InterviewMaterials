@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발자 면접 대비: JavaScript 핵심 질문 (Part 2)</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #3b82f6; /* Blue */
+            --accent: #ef4444; /* Red */
+            --success: #10b981; /* Emerald */
+            --warning: #f59e0b; /* Amber */
+            --info: #8b5cf6; /* Purple */
+            --js-color: #eab308; /* JavaScript Yellow */
+            --ts-color: #3178c6; /* TypeScript Blue */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-color);
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* 👑 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--js-color);
+        }
+
+        .header-badge {
+            background: var(--js-color);
+            color: #1e293b;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header h1 { margin: 0 0 15px 0; font-size: 2.3rem; color: #f8fafc; }
+        .header p { font-size: 1.15rem; color: #cbd5e1; margin: 0; font-weight: 300; }
+
+        /* 섹션 공통 스타일 (질문 카드) */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+        
+        .q-mark { color: var(--js-color); font-weight: bold; font-size: 1.6rem; margin-right: 8px; text-shadow: 1px 1px 0px rgba(0,0,0,0.2); }
+
+        /* 의도 및 답변 박스 */
+        .info-box { background: #eff6ff; border-left: 5px solid var(--secondary); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .info-box h4 { margin: 0 0 8px 0; color: var(--secondary); display: flex; align-items: center; font-size: 1.05rem; }
+        .info-box p { margin: 0; font-size: 0.95rem; color: #475569; }
+
+        .success-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .success-box h4 { margin: 0 0 12px 0; color: var(--success); display: flex; align-items: center; font-size: 1.05rem; }
+        
+        .answer-content { font-size: 1rem; color: #334155; }
+        .answer-content ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
+        .answer-content li { margin-bottom: 8px; }
+
+        /* 태그(Badge) */
+        .badge-group { margin-top: 25px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { display: inline-block; background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
+        .badge-ts { background: #e0f2fe; color: var(--ts-color); border: 1px solid #bae6fd; }
+
+        /* 텍스트 강조 */
+        .highlight { background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fef08a 40%); font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span class="header-badge">INTERVIEW PREP - PART 2</span>
+        <h1>💛 JS 면접 시크릿 노트: 코어 심화 & TS 편</h1>
+        <p>순수 자바스크립트의 난해한 동작 원리를 통제하고, 정적 타입(TypeScript)의 이점을 논리적으로 설명하세요.</p>
+    </div>
+
+    <!-- Q1: GET vs POST -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) 프론트엔드에서 서버와 통신할 때 주로 사용하는 GET 방식과 POST 방식의 차이점은 무엇인가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>HTTP 프로토콜의 기본 규약과 REST API 설계 원칙을 이해하고 프론트엔드(fetch/axios)에서 목적에 맞게 API를 호출할 수 있는지 평가합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                가장 큰 차이는 <strong>'데이터 전송 위치'</strong>와 <strong>'사용 목적'</strong>입니다.
+                <ul>
+                    <li><strong>GET (조회용):</strong> 데이터를 서버로부터 <strong>읽어올 때</strong> 사용합니다. 전송할 데이터가 URL의 뒤에 쿼리 파라미터(<code>?id=123</code>)로 노출되어 전송됩니다. 캐싱(Caching)이 가능하여 브라우저에 저장될 수 있지만, 보안에 취약하고 길이 제한이 있습니다.</li>
+                    <li><strong>POST (생성용):</strong> 새로운 데이터를 서버에 <strong>생성하거나 수정할 때</strong> 사용합니다. 데이터가 HTTP Body(본문)에 숨겨져서 전송되므로 URL에 노출되지 않으며, 대용량 데이터를 안전하게 보낼 수 있습니다. (캐싱 불가)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#GET_POST</span>
+            <span class="badge">#HTTP메서드</span>
+            <span class="badge">#REST_API</span>
+        </div>
+    </div>
+
+    <!-- Q2: 동기 비동기 혼용 시 주의점 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(기출) 동기식 코드와 비동기식 코드를 함께 사용할 때 주의해야 할 점은 무엇이며, 어떻게 해결하나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>API 통신 후 화면을 그리는 과정에서 비동기 타이밍을 제어하지 못해 발생하는 '경쟁 상태(Race Condition)'를 겪어보고 해결할 줄 아는지 실무 역량을 묻습니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                비동기 코드는 실행 완료를 기다리지 않고 바로 다음 동기 코드로 넘어가버리는 특성이 있습니다.<br><br>
+                따라서 <strong>서버에서 데이터를 받아오는 비동기 작업이 끝나기도 전에, 아래에 있는 동기 코드가 해당 데이터를 화면에 그리려고 시도하면 <code>undefined</code> 오류나 빈 화면이 렌더링되는 문제</strong>가 발생합니다.<br><br>
+                이를 해결하기 위해 <span class="highlight">async/await를 사용하여 비동기 통신이 완료될 때까지 코드의 실행을 명시적으로 대기</span>시키고, 데이터가 로딩 중일 때는 로딩 스피너(Loading State)를 띄워 오류를 방어해야 합니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#비동기제어</span>
+            <span class="badge">#RaceCondition</span>
+            <span class="badge">#Async_Await</span>
+        </div>
+    </div>
+
+    <!-- Q3: 클로저(Closure) -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>자바스크립트의 클로저(Closure)란 무엇이며, 실무에서 어떤 경우에 활용되나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>JS의 렉시컬 환경(Lexical Environment)과 가비지 컬렉션의 동작을 완벽히 이해하고 있는지 확인하는 고난도 단골 질문입니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                클로저는 <strong>"함수가 선언될 당시의 외부 환경(변수)을 기억하여, 외부 함수가 실행이 종료된 후에도 내부 함수가 그 외부 변수에 계속 접근할 수 있는 현상"</strong>을 말합니다.<br><br>
+                
+                외부 함수의 실행이 끝나면 원래는 내부 변수들이 가비지 컬렉터에 의해 소멸해야 하지만, 내부 함수가 이를 참조하고 있으면 소멸하지 않습니다. <br>
+                실무에서는 자바의 <code>private</code> 변수처럼 <span class="highlight">상태(데이터)를 외부에서 함부로 조작하지 못하게 안전하게 은닉화(캡슐화)</span>할 때 주로 사용되며, 검색창의 디바운싱(Debouncing) 기능을 구현할 때도 핵심 원리로 쓰입니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#클로저</span>
+            <span class="badge">#Closure</span>
+            <span class="badge">#정보은닉</span>
+        </div>
+    </div>
+
+    <!-- Q4: 얕은 복사와 깊은 복사 -->
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>자바스크립트에서 객체의 얕은 복사(Shallow Copy)와 깊은 복사(Deep Copy)의 차이점은 무엇인가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>참조 타입(객체, 배열)이 메모리에서 주소값을 복사(Call by Reference)한다는 것을 알고, 불변성을 유지하며 코드를 짤 수 있는지 평가합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <ul>
+                    <li><strong>얕은 복사:</strong> 객체의 가장 바깥 껍데기만 복사하고, <strong>내부에 있는 중첩 객체는 '메모리 주소'만 복사</strong>합니다. (예: Spread 연산자 <code>...</code>). 그래서 복사본의 내부 객체를 수정하면 원본 객체까지 훼손되는 버그가 발생할 수 있습니다.</li>
+                    <li><strong>깊은 복사:</strong> 내부 중첩 객체까지 아예 <strong>새로운 메모리 공간에 재귀적으로 똑같이 복제</strong>하여 원본과 완벽히 분리하는 것입니다. 최신 브라우저의 <code>structuredClone()</code> 함수나 <code>JSON.parse(JSON.stringify(obj))</code> 방식을 통해 원본의 불변성을 지킬 수 있습니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge">#얕은복사</span>
+            <span class="badge">#깊은복사</span>
+            <span class="badge">#불변성</span>
+        </div>
+    </div>
+
+    <!-- Q5: JavaScript vs TypeScript -->
+    <div class="section-card" style="margin-bottom: 0;">
+        <h2><span class="q-mark">Q.</span>최근 많은 프로젝트에서 자바스크립트 대신 타입스크립트(TypeScript)를 도입하고 있습니다. 본인이 생각하는 그 이유는 무엇인가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>런타임 언어와 컴파일 언어의 차이점을 명확히 알고, 정적 타입 지정이 대규모 협업과 유지보수 단계에서 주는 '안정성'의 이점을 논리적으로 설명할 수 있는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                가장 큰 이유는 <strong>'런타임 에러 방지'</strong>와 <strong>'생산성'</strong> 때문입니다.<br><br>
+                
+                자바스크립트는 <strong>동적 타입(Dynamic Typed)</strong> 언어라, 오타가 나거나 잘못된 타입의 데이터를 넘겨도 브라우저에서 <span class="highlight">코드가 실행(Runtime)되고 나서야 에러가 터집니다.</span> 이는 운영 서비스에서 매우 치명적입니다.<br><br>
+                
+                반면 타입스크립트는 JS에 타입을 명시적으로 부여한 <strong>정적 타입(Static Typed)</strong> 언어입니다. 코드를 치는 순간 IDE에서 에러를 띄워주거나, 빌드(컴파일) 과정에서 타입 에러를 100% 잡아주어 서비스 안정성이 획기적으로 올라갑니다. 또한, 객체 구조를 미리 알 수 있어 에디터의 자동완성(IntelliSense) 기능이 극대화되어 협업 효율이 매우 좋아집니다.
+            </div>
+        </div>
+
+        <div class="badge-group">
+            <span class="badge badge-ts">#TypeScript</span>
+            <span class="badge badge-ts">#정적타입</span>
+            <span class="badge badge-ts">#런타임에러방지</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
