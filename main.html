@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발자 면접 시크릿 노트 대시보드</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-dark: #334155;
+            --text-light: #64748b;
+            
+            /* 브랜드 컬러 */
+            --java-color: #f89820;
+            --js-color: #eab308;
+            --spring-color: #6db33f;
+            --db-color: #0284c7;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 50px 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .header h1 { margin: 0 0 15px 0; font-size: 2.5rem; letter-spacing: -0.5px; }
+        .header p { font-size: 1.15rem; color: #cbd5e1; margin: 0; font-weight: 300; }
+
+        /* 그리드 레이아웃 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        /* 카드 스타일 */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        /* 링크 리스트 */
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-list li {
+            margin-bottom: 15px;
+        }
+
+        .link-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            background: #f8fafc;
+            padding: 16px 20px;
+            border-radius: 10px;
+            border-left: 5px solid transparent;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .link-item:hover {
+            background: #f1f5f9;
+        }
+
+        .part-badge {
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-right: 15px;
+            color: white;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        /* 테마별 컬러 적용 */
+        .card.java .card-title { color: #d97706; }
+        .card.java .link-item:hover { border-left-color: var(--java-color); }
+        .card.java .part-badge { background-color: var(--java-color); }
+
+        .card.js .card-title { color: #ca8a04; }
+        .card.js .link-item:hover { border-left-color: var(--js-color); }
+        .card.js .part-badge { background-color: var(--js-color); }
+
+        .card.spring .card-title { color: #15803d; }
+        .card.spring .link-item:hover { border-left-color: var(--spring-color); }
+        .card.spring .part-badge { background-color: var(--spring-color); }
+
+        .card.db .card-title { color: #0369a1; }
+        .card.db .link-item:hover { border-left-color: var(--db-color); }
+        .card.db .part-badge { background-color: var(--db-color); }
+
+        /* 반응형 */
+        @media (max-width: 600px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <h1>🚀 웹 개발자 면접 시크릿 노트</h1>
+        <p>신입 백엔드/프론트엔드 개발자 취업을 위한 필수 기출문제 및 모범 답변</p>
+    </div>
+
+    <div class="grid-container">
+
+        <!-- Java 카드 -->
+        <div class="card java">
+            <div class="card-header">
+                <div class="card-icon">☕</div>
+                <h2 class="card-title">Java</h2>
+            </div>
+            <ul class="link-list">
+                <li>
+                    <a href="https://ljs1990-tj.github.io/InterviewMaterials/면접자료/java_1.html" class="link-item" target="_blank">
+                        <span class="part-badge">Part 1</span>
+                        객체지향, 컬렉션, 예외처리 및 기본기
+                    </a>
+                </li>
+                <li>
+                    <a href="https://ljs1990-tj.github.io/InterviewMaterials/면접자료/java_2.html" class="link-item" target="_blank">
+                        <span class="part-badge">Part 2</span>
+                        메모리 구조, Stream API, 동시성 심화
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Spring 카드 -->
+        <div class="card spring">
+            <div class="card-header">
+                <div class="card-icon">🌱</div>
+                <h2 class="card-title">Spring Framework</h2>
+            </div>
+            <ul class="link-list">
+                <li>
+                    <a href="https://ljs1990-tj.github.io/InterviewMaterials/면접자료/spring_1.html" class="link-item" target="_blank">
+                        <span class="part-badge">Part 1</span>
+                        Spring Boot, IoC/DI, AOP 기본 원리
+                    </a>
+                </li>
+                <li>
+                    <a href="https://ljs1990-tj.github.io/InterviewMaterials/면접자료/spring_2.html" class="link-item" target="_blank">
+                        <span class="part-badge">Part 2</span>
+                        MyBatis, JPA, 트랜잭션 및 커넥션 풀
+                    </a>
+                </li>
+                <li>
+                    <a href="https://ljs1990-tj.github.io/InterviewMaterials/면접자료/spring_3.html" class="link-item" target="_blank">
+                        <span class="part-badge">Part 3</span>
+                        Spring Security, JWT, REST API 및 배포
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- DB 카드 -->
+        <div class="card db">
+            <div class="card-header">
+                <div class="card-icon">💾</div>
+                <h2 class="card-title">Database</h2>
+            </div>
+            <ul class="link-list">
+                <li>
+                    <a href="https://ljs1990-tj.github.io/InterviewMaterials/면접자료/db_1.html" class="link-item" target="_blank">
+                        <span class="part-badge">Part 1</span>
+                        RDBMS, Oracle vs MySQL, Join, Index
+                    </a>
+                </li>
+                <li>
+                    <a href="https://ljs1990-tj.github.io/InterviewMaterials/면접자료/db_2.html" class="link-item" target="_blank">
+                        <span class="part-badge">Part 2</span>
+                        트리거, 정규화, 페이징 최적화, DB 락(Lock)
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- JavaScript 카드 -->
+        <div class="card js">
+            <div class="card-header">
+                <div class="card-icon">💛</div>
+                <h2 class="card-title">JavaScript</h2>
+            </div>
+            <ul class="link-list">
+                <li>
+                    <a href="https://ljs1990-tj.github.io/InterviewMaterials/면접자료/javascript_1.html" class="link-item" target="_blank">
+                        <span class="part-badge">Part 1</span>
+                        실행 컨텍스트, Event Loop, 브라우저 저장소
+                    </a>
+                </li>
+                <li>
+                    <a href="https://ljs1990-tj.github.io/InterviewMaterials/면접자료/javascript_2.html" class="link-item" target="_blank">
+                        <span class="part-badge">Part 2</span>
+                        비동기 처리 심화, 클로저, TypeScript 도입
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
