@@ -13,6 +13,7 @@
             --text-light: #64748b;
             
             /* 브랜드 컬러 */
+            --real-color: #e11d48; /* 실전 기출 컬러 (Rose/Red) */
             --java-color: #f89820;
             --js-color: #eab308;
             --spring-color: #6db33f;
@@ -133,6 +134,10 @@
         }
 
         /* 테마별 컬러 적용 */
+        .card.real .card-title { color: var(--real-color); }
+        .card.real .link-item:hover { border-left-color: var(--real-color); }
+        .card.real .part-badge { background-color: var(--real-color); }
+
         .card.java .card-title { color: #d97706; }
         .card.java .link-item:hover { border-left-color: var(--java-color); }
         .card.java .part-badge { background-color: var(--java-color); }
@@ -166,6 +171,46 @@
     </div>
 
     <div class="grid-container">
+
+        <!-- ⭐ 실전 면접 기출 (새로 추가된 항목 - 제일 앞 배치) ⭐ -->
+        <div class="card real">
+            <div class="card-header">
+                <div class="card-icon">🔥</div>
+                <h2 class="card-title">Real Interview</h2>
+            </div>
+            <ul class="link-list">
+                <li>
+                    <a href="종합1.html" class="link-item" target="_blank">
+                        <span class="part-badge">Set 1</span>
+                        바이브 코딩 방어 및 프로젝트 심층 분석
+                    </a>
+                </li>
+                <li>
+                    <a href="종합2.html" class="link-item" target="_blank">
+                        <span class="part-badge">Set 2</span>
+                        Spring 딥다이브 및 DB/보안 CS 압박 방어
+                    </a>
+                </li>
+                <li>
+                    <a href="종합3.html" class="link-item" target="_blank">
+                        <span class="part-badge">Set 3</span>
+                        JPA 미경험 방어 및 예외 상황 대처법
+                    </a>
+                </li>
+                <li>
+                    <a href="종합4.html" class="link-item" target="_blank">
+                        <span class="part-badge">Set 4</span>
+                        기술 스택 비교 및 대규모 레거시 마이그레이션
+                    </a>
+                </li>
+                <li>
+                    <a href="종합5.html" class="link-item" target="_blank">
+                        <span class="part-badge">Set 5</span>
+                        AI 도구 활용 딜레마 및 단기 수강 압박 돌파
+                    </a>
+                </li>
+            </ul>
+        </div>
 
         <!-- Java 카드 -->
         <div class="card java">
