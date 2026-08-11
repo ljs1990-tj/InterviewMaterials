@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실전 면접 기출 해설 노트 (Set 4)</title>
+    <style>
+        :root {
+            --primary: #4c1d95; /* Indigo 900 */
+            --secondary: #6d28d9; /* Violet 700 */
+            --accent: #0ea5e9; /* Light Blue */
+            --success: #16a34a; /* Green */
+            --warning: #ea580c; /* Amber */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-color);
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--accent);
+        }
+
+        .header-badge {
+            background: var(--accent);
+            color: #fff;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header h1 { margin: 0 0 15px 0; font-size: 2.3rem; color: #ffffff; }
+        .header p { font-size: 1.15rem; color: #e2e8f0; margin: 0; font-weight: 300; }
+
+        /* 섹션 타이틀 */
+        .section-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            border-bottom: 3px solid var(--border);
+            padding-bottom: 10px;
+            margin: 50px 0 30px 0;
+            font-weight: 800;
+        }
+
+        /* 질문 카드 */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        .section-card h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+        
+        .q-mark { color: var(--accent); font-weight: bold; font-size: 1.6rem; margin-right: 8px; }
+
+        /* 의도 및 답변 박스 */
+        .info-box { background: #f0f9ff; border-left: 5px solid var(--accent); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .info-box h4 { margin: 0 0 8px 0; color: var(--accent); font-size: 1.05rem; }
+        .info-box p { margin: 0; font-size: 0.95rem; color: #475569; }
+
+        .success-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .success-box h4 { margin: 0 0 12px 0; color: var(--success); font-size: 1.05rem; }
+        
+        .answer-content { font-size: 1rem; color: #334155; }
+        .answer-content ul { padding-left: 20px; margin-top: 10px; margin-bottom: 0; }
+        .answer-content li { margin-bottom: 8px; }
+
+        /* 텍스트 강조 */
+        .highlight { background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #bae6fd 40%); font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <span class="header-badge">REAL INTERVIEW - SET 4</span>
+        <h1>🔥 실전 면접 기출 해설 노트</h1>
+        <p>기술 스택 비교 분석, 인프라 배포, 대규모 리팩토링 및 멘탈 압박 편</p>
+    </div>
+
+    <!-- PART 1: 프레임워크 및 인프라 (Tech Stack & Infra) -->
+    <h2 class="section-title">🏗️ Part 1. 프레임워크 비교 및 인프라 이해</h2>
+
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>프로젝트에서 Spring Boot, React, Flutter를 모두 다뤄보셨네요. 각각의 차이점과 특징을 명확히 설명해 주시겠어요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>여러 기술을 얕게 수박 겉핥기식으로 배운 것인지, 아니면 각 프레임워크의 존재 목적과 아키텍처 상의 포지션을 정확히 분별하고 있는지 확인합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                "세 기술은 개발 생태계에서 맡은 역할이 명확히 다릅니다."<br><br>
+                "<strong>Spring Boot</strong>는 서버사이드에서 데이터베이스(MyBatis 연동 등)와 비즈니스 로직을 안정적이고 객체지향적으로 처리하는 강력한 <strong>백엔드 프레임워크</strong>입니다.<br>
+                <strong>React</strong>는 브라우저(웹) 상에서 컴포넌트 단위로 UI를 유연하게 구성하고, 비동기 데이터 통신을 통해 화면 깜빡임이 없는 SPA(Single Page Application)를 구축하는 <strong>웹 프론트엔드 라이브러리</strong>입니다.<br>
+                <strong>Flutter</strong>는 다트(Dart) 언어를 기반으로, 단 하나의 코드베이스만으로 iOS와 Android 양대 마켓에 출시할 수 있는 네이티브 앱을 동시에 컴파일해 내는 <strong>모바일 크로스 플랫폼 프레임워크</strong>입니다."
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>호스팅 서비스나 자동화된 플랫폼도 많은데 굳이 AWS EC2 서버를 대여해서 직접 배포를 진행한 이유가 있나요? 배송 API 등 외부 모듈을 쓰면서 겪은 어려움은 없었나요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>단순 코딩을 넘어 인프라 환경(서버, 포트, 네트워크)에 대한 이해도가 있는지, 그리고 써드파티(3rd Party) API 연동 시 발생하는 통신/인증 에러 해결 능력을 묻습니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                "EC2를 선택한 이유는 <strong>리눅스(Linux) 환경에서의 서버 세팅, 포트 포워딩, 방화벽(보안 그룹) 설정 등을 처음부터 끝까지 직접 제어해 보고 싶었기 때문</strong>입니다. 인프라 구조를 체감해야 백엔드 코드의 동작 원리를 더 깊이 이해할 수 있다고 판단했습니다."<br><br>
+                "외부 배송 API 연동 시 가장 큰 어려움은 <span class="highlight">API 제공사가 요구하는 규약(Header의 인증 키, JSON 포맷)을 정확히 맞추는 것</span>이었습니다. 특히 프론트엔드에서 바로 외부 API를 찔렀을 때 CORS(교차 출처 리소스 공유) 에러가 발생하여, 백엔드 스프링 서버에서 프록시(Proxy) 형태로 외부 API를 대신 호출하여 결과를 내려주는 방식으로 아키텍처를 수정해 해결했습니다."
+            </div>
+        </div>
+    </div>
+
+    <!-- PART 2: 실무 아키텍처 설계 -->
+    <h2 class="section-title">🧩 Part 2. 실무 아키텍처 및 마이그레이션</h2>
+
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>만약 자사의 기존 '만 줄 이상의 레거시 코드'를 웹으로 완전히 새로 구현(마이그레이션)해야 한다면, 어떤 과정을 거쳐서 진행할 것인가요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>신입에게 거창한 아키텍처를 바라는 것이 아닙니다. 막막한 대규모 태스크가 주어졌을 때, 당황하지 않고 체계적이고 절차적으로 일을 쪼개서(Divide and Conquer) 진행할 수 있는 능력을 봅니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                "만 줄이 넘는 코드를 무작정 웹으로 옮기면 반드시 로직 누락과 버그가 발생할 것입니다. 따라서 체계적인 절차를 밟겠습니다."<br><br>
+                "첫째, <strong>레거시 코드 분석 및 문서화</strong>입니다. 기존 코드가 수행하는 비즈니스 로직을 도메인별(회원, 주문, 결제 등)로 쪼개어 명세서를 작성하겠습니다. 이 과정에서 <span class="highlight">AI 도구를 활용해 레거시 코드의 흐름을 빠르게 역어셈블하고 팀원들과 코드 분석 가이드라인 문서를 공유</span>하여 시간을 단축하겠습니다.<br>
+                둘째, <strong>프론트/백엔드 분리 설계</strong>입니다. 기존에 뭉쳐있던 로직을 분리하여 웹 표준인 RESTful API 기반으로 백엔드를 설계하겠습니다.<br>
+                셋째, 한 번에 엎는 것(Big Bang)이 아니라, 작은 모듈 단위로 점진적으로 배포하고 테스트하는 <strong>안정적인 마이그레이션</strong>을 수행하겠습니다."
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>우리 회사는 데이터베이스로 MS SQL을 사용합니다. 프로젝트에서는 MySQL만 써보신 것 같은데 적응에 문제가 없을까요?</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>JPA를 안 써본 것과 비슷한 맥락입니다. RDBMS 간의 공통된 표준을 바탕으로 낯선 도구를 두려워하지 않는 자세를 보여주어야 합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                "네, 전혀 문제없습니다."<br><br>
+                "MySQL을 주로 다루긴 했지만, 데이터베이스 모델링과 쿼리 작성의 근간이 되는 <strong>ANSI 표준 SQL</strong> 문법을 확실하게 익혀 두었습니다. RDBMS의 본질적인 원리(조인, 인덱스 타기, 트랜잭션 처리)는 MS SQL이나 MySQL이나 결국 동일하다고 생각합니다.<br> 
+                다만, 각 DBMS마다 페이징 처리(LIMIT vs TOP/OFFSET)나 내장 함수 등 방언(Dialect)의 차이가 있다는 점은 인지하고 있으므로, 입사 전후로 MS SQL 공식 문서를 집중적으로 학습하여 실무 투입에 지연이 없도록 만들겠습니다."
+            </div>
+        </div>
+    </div>
+
+    <!-- PART 3: 인성, 압박 및 태도 -->
+    <h2 class="section-title">🔥 Part 3. 압박 질문 및 멘탈 검증</h2>
+
+    <div class="section-card">
+        <h2><span class="q-mark">Q.</span>(압박 ⚠️) 입사하게 되면 2인 1조 팀으로 파견을 갈 수도 있습니다. 사수 없이 업무를 쳐내야 해서 꽤 외롭고 힘들 텐데 자신 있나요? 게다가 보안 도메인 지식도 부족해 보여서 꽤 혼날 수도 있습니다.</h2>
+        
+        <div class="info-box">
+            <h4>🎯 면접관의 의도</h4>
+            <p>신입 개발자의 가장 큰 약점인 '의존성'을 저격하는 압박 질문입니다. 사수가 떠먹여 주길 바라는 수동적인 태도를 버리고, 끈질기게 파고드는 주도성과 멘탈(맷집)을 어필해야 합니다.</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ 모범 답변 가이드</h4>
+            <div class="answer-content">
+                <strong>(절대 위축되지 말고 긍정적인 '야생력'을 보여주세요.)</strong><br>
+                "솔직히 두려움이 없는 것은 아니지만, 오히려 <strong>저의 책임감과 문제 해결 능력을 비약적으로 끌어올릴 수 있는 최고의 기회</strong>라고 생각합니다."<br><br>
+                "모르는 것이 생겼을 때 무작정 사수분께 기대기보다는, 공식 문서와 기술 블로그, 커뮤니티를 끈질기게 뒤져가며 제 스스로 가설을 세우고 돌파구를 찾는 훈련을 팀 프로젝트 과정에서 꾸준히 해왔습니다.<br>
+                보안 도메인 지식이 아직 부족하다는 점 뼈저리게 인정합니다. 혼나는 것은 두렵지 않습니다. 오히려 <span class="highlight">현업 선배님들의 날카로운 피드백과 질책을 성장을 위한 가장 확실한 오답 노트로 삼고</span>, 밤을 새워서라도 부족한 보안 지식을 채워 넣어 팀에 1인분 이상을 해내는 든든한 파트너가 되겠습니다."
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
